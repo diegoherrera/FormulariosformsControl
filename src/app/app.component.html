@@ -1,8 +1,44 @@
-<h1>{{title}}</h1>
-<nav [ngClass] = "'menu'">
-   <a routerLink="/books" routerLinkActive="active-link">books</a> | 
-   <a routerLink="/add" routerLinkActive="active-link">Add Book</a> 
-</nav>  
-<div>	
-  <router-outlet></router-outlet>	
+<div class="container">
+  <h1>Formularios</h1>
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div class="form-group">
+        <label for="usr">Nombre:</label>
+        <input type="text" [formControl]="Nombre" class="form-control">
+        <label *ngIf="Nombre.invalid" [ngClass]="'error'"> Name required with max 15 character. </label>
+      </div>
+
+      <div>
+        <button (click)="setNameValue()">Set value</button>
+        <button (click)="setResetName()">Reset</button>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="usr">Apellido:</label>
+        <input type="text" [formControl]="Apellido" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="usr">Edad:</label>
+        <input type="text" [formControl]="Edad" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="usr">Pais:</label>
+        <input type="text" [formControl]="Pais" class="form-control" id="usr">
+      </div>
+      <div class="form-group">
+        <label for="usr">Es Profesional:</label>
+        <input type="checkbox" [checked]="Profesional.value" (change)="changeValue()" />
+      </div>
+      <button type="button" (click)="accionformulario()">Enviar</button>
+    </div>
+    <div class="col-sm-6">
+      <p>Nombre: <b>{{ Nombre.value }}</b>, Validation Status: <b>{{ Nombre.status }}</b></p>
+      <p>Apellido: <b>{{ Apellido.value }}</b>, Validation Status: <b>{{ Apellido.status }}</b></p>
+      <p>Edad: <b>{{ Edad.value }}</b>, Validation Status: <b>{{ Edad.status }}</b></p>
+      
+      <p>Pais: <b>{{ Pais.value }}</b> </p>
+      <p>Es Profesional ?: <b>{{ Profesional.value }}</b> </p>
+    </div>
+  </div>
 </div>
